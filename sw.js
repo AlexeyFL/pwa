@@ -11,14 +11,16 @@ const assets = [
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
   '/pages/fallback.html',
+  '/pages/contact.html',
+  '/pages/about.html',
 ];
 
 // install service worker
-self.addEventListener('install', (evt) => {
+self.addEventListener('install', (evt) => { 
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       console.log('caching');
-      cache.addAll(assets);
+      cache.addAll(assets); 
     })
   );
 });
@@ -41,19 +43,20 @@ self.addEventListener('fetch', (evt) => {
   // console.log('fetch event', evt);
 
   evt.respondWith(
-    caches
-      .match(evt.request)
-      .then((cacheRes) => {
+    caches.match(evt.request).then((cacheRes) => {
         return (
           cacheRes ||
           fetch(evt.request).then((fetchRes) => {
-            return caches.open(dynamicCache).then((cache) => {
+            return caches.open(dynamicCacheName).then((cache) => {
               cache.put(evt.request.url, fetchRes.clone());
               return fetchRes;
             });
           })
         );
-      }) 
-      .catch(() => caches.match('/pages/fallback.html'))
+      }).catch(() => {
+        if (evt.request.url.indexOf('.html') > -1) {
+          caches.match('/pages/fallback.html');
+        }
+      })
   );
 });
