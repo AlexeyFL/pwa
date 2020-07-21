@@ -14,7 +14,7 @@
     <!-- ios support -->
     <link rel="apple-touch-icon" href="/icons/icon-96x96.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
-    <meta name="theme-color" content="#FFE1C4"> 
+    <meta name="theme-color" content="#FFE1C4" />
     <title>Document</title>
   </head>
 
@@ -126,8 +126,36 @@
         </div>
       </form>
     </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: 'AIzaSyD5MKU1zGj_NUymTs4CEGOoZZdjUkU2oiQ',
+        authDomain: 'food-pwa-b7d5d.firebaseapp.com',
+        databaseURL: 'https://food-pwa-b7d5d.firebaseio.com',
+        projectId: 'food-pwa-b7d5d',
+        storageBucket: 'food-pwa-b7d5d.appspot.com',
+        messagingSenderId: '155937221800',
+        appId: '1:155937221800:web:8db7d7ef01b2d71760a69d',
+        measurementId: 'G-MFZJDYQRJF',
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const db = firebase.firestore();
+    </script>
+
     <script src="libs/materialize.min.js"></script>
     <script src="app.js"></script>
+    <script src="db.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
