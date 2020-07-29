@@ -31,7 +31,7 @@ function createArticle (article) {
   `;
 } */
 
-
+const recipes = document.querySelector('.recipes');
   
 document.addEventListener('DOMContentLoaded', function() {
   // nav menu
@@ -41,3 +41,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const forms = document.querySelectorAll('.side-form');
   M.Sidenav.init(forms, {edge: 'left'});
 });
+
+const renderRecipe = (data, id)=>{
+  const html = `
+    <div class="card-panel recipe white row" data-id="${id}">
+      <img src="/images/dish.png" alt="recipe thumb" />
+      <div class="recipe-details">
+        <div class="recipe-title">${data.title}</div>
+        <div class="recipe-ingredients">${data.ingridients}</div>
+      </div>
+      <div class="recipe-delete">
+        <i class="material-icons" data-id="${id}">delete_outline</i>
+      </div>
+    </div>
+  `;
+
+  recipes.innerHTML += html;
+}
