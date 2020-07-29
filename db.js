@@ -1,3 +1,15 @@
+// offline data
+db.enablePersistence()
+  .catch(err => {
+    if(err.code == 'failed-precondition'){
+      console.log('persistence failed')
+    } else if(err.code == 'unimplemented'){
+      console.log('persistence is not available')
+    }
+  })
+
+
+// real-time listeners
 db.collection ('recipies').onSnapshot (snapshot => {
   // console.log ("snapshot", snapshot.docChanges());
 
